@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Holiday Card 2014</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+</head>
+
+<body>
+    
+    <div id="container" style="opacity: 0">
+        <!-- Falling snow -->
+        <div style="position: absolute; z-index: 1;" id="snowflakeContainer">
+            <p class="snowflake"><img src= "images/snowflake_small_03.png" ></p>
+        </div>
+        
+        <!-- Text  -->
+        <div id="txt1"><img src="images/txt_holidays.png" alt=""></div>
+        <div id="txt2"><img src="images/txt_from.png" alt=""></div>
+        <div id="txt3"><img src="images/txt_superyear.png" alt=""></div>
+
+        <!-- Logos  -->
+        <div id="ots"><img src="images/ots_logo.png" alt=""></div>
+
+        <!-- Sound Control -->
+        <a class="btn btn-1" id="mute">Audio Off</a>
+
+        <!-- Snowflakes  -->
+        <div id="telexitos"><img src="images/flake_three.png" alt="" ></div>
+        <div id="cozi"><img src="images/flake_four.png" alt="" ></div>
+        <div id="nbc"><img src="images/flake_one.png" alt="" ></div>
+        <div id="telemundo"><img src="images/flake_two.png" alt=""></div>
+        <div id="superbowl"><img src="images/flake_five.png" alt="" ></div>
+    </div>
+    
+    <div id="flasher">
+        <object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"  codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="100%"  height="100%" >
+            <param name="movie" value="swf/HolidayCard_2014.swf" />
+            <param name="quality" value="high" />
+            <param name="wmode" value="transparent" />
+            <param name="scale" value="default"/>
+            <param name="swfversion" value="9.0.45.0" />
+            <!-- This param tag prompts users with Flash Player 6.0 r65 and higher to download the latest version of Flash Player. Delete it if you don’t want users to see the prompt. -->
+            <param name="expressinstall" value="Scripts/expressInstall.swf" />
+            <!-- Next object tag is for non-IE browsers. So hide it from IE using IECC. -->
+            <!--[if !IE]>-->
+            <object type="application/x-shockwave-flash" data="swf/HolidayCard_2014.swf" width="100%" height="100%" scale="default">
+              <!--<![endif]-->
+              <param name="quality" value="high" />
+              <param name="wmode" value="transparent" />
+              <param name="scale" value="default"/>
+              <param name="swfversion" value="9.0.45.0" />
+              <param name="expressinstall" value="Scripts/expressInstall.swf" />
+              <!-- The browser displays the following alternative content for users with Flash Player 6.0 and older. -->
+              <div>
+                <h4>Content on this page requires a newer version of Adobe Flash Player.</h4>
+                <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
+              </div>
+              <!--[if !IE]>-->
+            </object>
+            <!--<![endif]-->
+        </object>    
+    </div>
+    
+</body>
+    
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
+<script src="scripts/Physics2DPlugin.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://jreject.turnwheel.com/js/jquery.reject.min.js"></script>
+<script src="scripts/snow.js"></script>
+<script src="scripts/soundmanager2-jsmin.js"></script>
+    
+    
+<script>
+        
+    var counter = 1;
+    var blurElement = {a:0};
+    var t1 = new TimelineLite();
+    var superX = 180;
+    var superY = -140;
+    var nbcX;
+    var nbcY;
+    var telemundoX;
+    var telemundoY;
+    var telexitosX;
+    var telexitosY;
+    var coziX;
+    var coziY;
+        
+    function startAnimation() {        
+                
+        /* //Sets the initial blur as flake flows off screen    
+        TweenMax.to(blurElement, .5, {delay: 3.5, a: 5, onUpdate: applyBlur});
+        // Unblurs the object when it comes back in at the end (delayed until it was off screen)
+        TweenMax.to(blurElement, .1, {delay: 4, a: 0, onUpdate: applyBlur});
+        TweenMax.delayedCall(6, updateCounter); // Call this after blurring out to switch to next element in applyBlur function, give enough time to blur out the snowflake though    */
+
+                    
+        //////////////////////////////
+        // NBC FLAKE //
+        //////////////////////////////
+        t1.fromTo(nbc, 5, {x: 100, y: -50, scaleX: .35, scaleY: .35}, {scaleX: 2.25, scaleY: 2.25, physics2D:{velocity:500, angle:-180, friction:0.1, acceleration:500, accelerationAngle: 40}});
+        TweenMax.delayedCall(0, alphaPro, [nbc]);
+        
+        // now blur out nbc
+        TweenMax.to(blurElement, 1, {delay: 2.5, a: 4, onUpdate: applyBlur});
+        TweenMax.to(blurElement, .1, {delay: 3.5, a: 0, onUpdate: applyBlur});
+        TweenMax.delayedCall(3.6, updateCounter);
+        
+        //////////////////////////////
+        // TELEMUNDO FLAKE //
+        //////////////////////////////
+        t1.fromTo(telemundo, 5, {x: 50, y: -150, scaleX: .35, scaleY: .35}, {scaleX: 2.25, scaleY: 2.25, physics2D:{velocity:500, angle:120, friction:0.1, acceleration:500, accelerationAngle: 180}}, "-=2.5");
+        TweenMax.delayedCall(2.5, alphaPro, [telemundo]);
+        
+        // now blur out telemundo
+        TweenMax.to(blurElement, 1, {delay: 4.8, a: 4, onUpdate: applyBlur});
+        TweenMax.to(blurElement, .1, {delay: 5.9, a: 0, onUpdate: applyBlur});
+        TweenMax.delayedCall(6, updateCounter);
+        
+        //////////////////////////////
+        // TELEXITOS FLAKE //
+        //////////////////////////////
+        t1.fromTo(telexitos, 5, {x: 50, y: 10, scaleX: .35, scaleY: .35}, {scaleX: 2.25, scaleY: 2.25, physics2D:{velocity:500, angle:-180, friction:0.1, acceleration:500, accelerationAngle: 330}}, "-=2.5");
+        TweenMax.delayedCall(5, alphaPro, [telexitos]);
+
+        // now blur out telexitos
+        TweenMax.to(blurElement, 1, {delay: 7.5, a: 4, onUpdate: applyBlur});
+        TweenMax.to(blurElement, .1, {delay: 8.6, a: 0, onUpdate: applyBlur});
+        TweenMax.delayedCall(8.7, updateCounter);
+        
+        //////////////////////////////
+        // COZI FLAKE //
+        //////////////////////////////
+        t1.fromTo(cozi, 4, {x: 25, y: 50, scaleX: .35, scaleY: .35}, {scaleX: 2.25, scaleY: 2.25, physics2D:{velocity:500, angle:-60, friction:0.1, acceleration:500, accelerationAngle: -180}}, "-=2.5");
+        TweenMax.delayedCall(7.5, alphaPro, [cozi]);
+
+        // now blur out cozi
+        TweenMax.to(blurElement, 1, {delay: 9.9, a: 4, onUpdate: applyBlur});
+        TweenMax.to(blurElement, .1, {delay: 11, a: 0, onUpdate: applyBlur});
+        TweenMax.delayedCall(11.1, updateCounter);
+                
+        //////////////////////////////
+        // Text Fading in
+        //////////////////////////////
+        TweenMax.to(txt1, 3, {delay:1, autoAlpha:1});
+        TweenMax.to(txt2, 2, {delay:5, autoAlpha:1});
+        TweenMax.to(txt3, 3, {delay:13, autoAlpha:1});
+        
+        ///////////////////////////////////////////////////////////////////////
+        // Condition to check devices and properly place snowflakes at the end
+        ///////////////////////////////////////////////////////////////////////
+        if( /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent) ) {   
+            $("#mute").text("Audio On");
+            
+            if (window.screen.width == 375){ // Check iphone 6
+                t1.to(nbc, 3, {alpha: 1, x: 0, y: 140, scaleX: .8, scaleY: .8, ease:Power2.easeInOut}, "-=2");
+                t1.to(telemundo, 3, {alpha: 1, x: -380, y: 290, scaleX: .8, scaleY: .8, ease:Power2.easeInOut}, "-=2.5");
+                t1.to(telexitos, 3, {alpha: 1, x: 200, y: -195, scaleX: .8, scaleY: .8, ease:Power2.easeInOut}, "-=2.5");
+                t1.to(cozi, 3, {alpha: 1, x: -160, y: 100, scaleX: .8, scaleY: .8, ease:Power2.easeInOut}, "-=2.8");   
+                superX = 150;
+                superY = -170
+            } else if (window.screen.width == 414){ // Check iphone 6 plus
+                t1.to(nbc, 3, {alpha: 1, x: 30, y: 150, scaleX: 1, scaleY: 1, ease:Power2.easeInOut}, "-=2");
+                t1.to(telemundo, 3, {alpha: 1, x: -400, y: 300, scaleX: 1, scaleY: 1, ease:Power2.easeInOut}, "-=2.5");
+                t1.to(telexitos, 3, {alpha: 1, x: 240, y: -185, scaleX: 1, scaleY: 1, ease:Power2.easeInOut}, "-=2.5");
+                t1.to(cozi, 3, {alpha: 1, x: -160, y: 100, scaleX: 1, scaleY: 1, ease:Power2.easeInOut}, "-=2.8");
+                superX = 180;
+                superY = -180;
+            } else { // Ok, guess it will just be normal 320 width
+                t1.to(nbc, 3, {alpha: 1, x: -10, y: 90, scaleX: .8, scaleY: .8, ease:Power2.easeInOut}, "-=2");
+                t1.to(telemundo, 3, {alpha: 1, x: -330, y: 200, scaleX: .8, scaleY: .8, ease:Power2.easeInOut}, "-=2.5");
+                t1.to(telexitos, 3, {alpha: 1, x: 190, y: -135, scaleX: .8, scaleY: .8, ease:Power2.easeInOut}, "-=2.5");
+                t1.to(cozi, 3, {alpha: 1, x: -135, y: 60, scaleX: .8, scaleY: .8, ease:Power2.easeInOut}, "-=2.8");
+                superX = 120;
+                superY = -140;
+            } 
+        } else {   
+            
+            if ($(window).height() < 800) {
+                TweenMax.to(ots, 0, {y: "+=12"});   
+            }
+                        
+            if ($(window).width() === 1024) { // Ok, no mobile so here is the desktop endings
+                nbcX = -210;
+                nbcY = -180;
+                telemundoX = 200;
+                telemundoY = 0;
+                telexitosX = -90;
+                telexitosY = 80;
+                coziX = 240;
+                coziY = 100; 
+                superX = 120;
+                superY = -190;
+
+                desktopFinish();
+            } else if (($(window).width() < 1600) && ($(window).width() > 1024)) { // Ok, no mobile so here is the desktop endings
+                nbcX = -180;
+                nbcY = -200;
+                telemundoX = 200;
+                telemundoY = 0;
+                telexitosX = -80;
+                telexitosY = 65;
+                coziX = 240;
+                coziY = 70; 
+                superX = 170;
+                superY = -190;
+                
+                if($(window).height() > 900){
+                    nbcY = -180;
+                    telemundoY = 65;
+                    telexitosY = 75;
+                    coziY = 120;
+                    superY = -140;
+                }
+                
+                if(($(window).height() <= 720)) {
+                    telemundoY = -50;
+                    superY = -250;
+                }
+            
+
+                desktopFinish();
+            } else if (($(window).width() >= 1600) && ($(window).width() < 1900)) {
+                nbcX = -120;
+                nbcY = -190;
+                telemundoX = 200;
+                telemundoY = 60;
+                telexitosX = -50;
+                telexitosY = 80;
+                coziX = 250;
+                coziY = 120; 
+                superX = 280;
+
+                desktopFinish();
+            } else if ($(window).width() >= 1900) {
+                nbcX = -100;
+                nbcY = -170;
+                telemundoX = 200;
+                telemundoY = 90;
+                telexitosX = -30;
+                telexitosY = 100;
+                coziX = 220;
+                coziY = 150; 
+                superX = 320
+                superY = -100
+
+                desktopFinish();
+            }
+        }
+        
+        function desktopFinish() {
+            t1.to(nbc, 3, {alpha: 1, xPercent: nbcX, yPercent: nbcY, scaleX: .8, scaleY: .8, ease:Power2.easeInOut}, "-=1.8");
+            t1.to(telemundo, 2.5, {alpha: 1, xPercent: telemundoX, y: telemundoY, scaleX: .8, scaleY: .8, ease:Power2.easeInOut}, "-=2.1");
+            t1.to(telexitos, 2, {alpha: 1, xPercent: telexitosX, yPercent: telexitosY, scaleX: .8, scaleY: .8, ease:Power2.easeInOut}, "-=1.8");
+            t1.to(cozi, 2, {alpha: 1, xPercent: coziX, yPercent: coziY, scaleX: .8, scaleY: .8, ease:Power2.easeInOut}, "-=2");
+        }
+        
+        //////////////////////////////
+        // SUPERBOWL FLAKE + ENDING //
+        //////////////////////////////
+        t1.fromTo(superbowl, 2, {alpha: 0, x: 0, y: -300, scaleX: .35, scaleY: .35}, {alpha: 1, x: superX, y: superY, scaleX: .8, scaleY: .8, rotationY: 0}, "-=2.3");
+        
+    }
+        
+    ///////////////////////////////////////////////////////////////////////
+    // HANDLE THE BLURS PLEASE 
+    ///////////////////////////////////////////////////////////////////////
+    function applyBlur() {
+      switch(counter){
+        case 1:
+            TweenMax.set($('#nbc'), {webkitFilter: "blur(" + blurElement.a + "px)"});
+        break;
+
+        case 2:
+            TweenMax.set($('#telemundo'), {webkitFilter: "blur(" + blurElement.a + "px)"});
+        break;
+
+        case 3:
+            TweenMax.set($('#telexitos'), {webkitFilter: "blur(" + blurElement.a + "px)"});
+        break; 
+
+        case 4:
+            TweenMax.set($('#cozi'), {webkitFilter: "blur(" + blurElement.a + "px)"});
+        break;
+
+        case 5:
+            TweenMax.set($('#superbowl'), {webkitFilter: "blur(" + blurElement.a + "px)"});
+        break;
+      }
+    }
+    
+    function updateCounter(){
+        counter++;
+        //console.log(counter);
+    }
+    
+    function alphaPro(snowflake){
+        TweenMax.to(snowflake, 1, {alpha: 1});
+        TweenMax.to(snowflake, 1, {delay: 2.5, alpha: 0});
+    }
+
+         
+$(document).ready(
+    function() {
+        
+        TweenMax.to(txt1, 0, {autoAlpha:0});
+        TweenMax.to(txt2, 0, {autoAlpha:0});
+        TweenMax.to(txt3, 0, {autoAlpha:0});
+        
+        TweenMax.to(nbc, 0, {alpha: 0});
+        TweenMax.to(telemundo, 0, {alpha: 0});
+        TweenMax.to(cozi, 0, {alpha: 0});
+        TweenMax.to(telexitos, 0, {alpha: 0});
+        
+        TweenMax.to(container, 1, {alpha: 1});
+        
+        var mobileCounter = 0;
+        var audioCounter = 0;
+                        
+        function playAudio(){
+            if( /Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent) && (mobileCounter == 0 || audioCounter == 0) ) {
+                var mySound = soundManager.createSound({
+                    id: 'myMusic',
+                    url: 'images/Forest_Elves_Lehrman_22sec.mp3'
+                });
+                mySound.play();
+                mobileCounter++;
+            } else if (audioCounter == 0) {
+                mySound = soundManager.createSound({
+                    id: 'myMusic',
+                    url: 'images/Forest_Elves_Lehrman_22sec.mp3'
+                });
+                mySound.play();
+                audioCounter++;
+            }            
+        }
+        
+        $( "#mute" ).click(function() {            
+            if(mobileCounter >= 1 && /Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)){
+                console.log(mobileCounter);
+                soundManager.togglePause('myMusic');
+                if (mobileCounter == 1){
+                    $("#mute").text("Audio Off");
+                    mobileCounter++;
+                } else if (mobileCounter == 2){
+                    $("#mute").text("Audio On");
+                    mobileCounter--;
+                }
+                console.log(mobileCounter);
+            } else if (!(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent))){
+                soundManager.togglePause('myMusic');
+                if (audioCounter == 1){
+                    $("#mute").text("Audio On");
+                    audioCounter++;
+                } else if (audioCounter == 2){
+                    $("#mute").text("Audio Off");
+                    audioCounter--;
+                }
+            } else {
+                playAudio();  
+            } 
+        });
+        
+        ///////////////////////////////////////////////////////////////////////
+        // BROWSER DETECTION
+        ///////////////////////////////////////////////////////////////////////
+        if (/MSIE|Trident|Firefox|Opera/i.test(navigator.userAgent)){
+            $("#container" ).css( "display", "none" );
+        } else {
+            $("#flasher" ).css( "display", "none" );
+            soundManager.setup({
+              useHTML5Audio: true,
+              preferFlash: false,
+              onready: function() {
+                playAudio();
+              }
+            });
+            
+            startAnimation();
+        }
+        
+    }
+)
+</script>
+</html>

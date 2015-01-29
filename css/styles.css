@@ -1,0 +1,394 @@
+html, body {
+  height: 100%;
+}
+
+body {
+    background-position: 50% 0;
+	background-color:#cde7f4;
+	background-repeat:no-repeat;
+	margin:0;
+	overflow:hidden;
+    visibility: visible;
+}
+
+#container{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+#flasher {
+    height: 100%;
+}
+
+.btn {
+    font-family: sans-serif;
+    border: none;
+	color: #fff;
+	background: #343a41;
+	cursor: pointer;
+	padding: 20px;
+	display: block;
+	letter-spacing: 1px;
+	outline: none;
+	position: relative;
+    width: 80px;
+    bottom: -67%;
+    margin: 0 auto;
+    left: -7%;
+    z-index: 2000;
+    text-align: center;
+}
+
+.snowflake {
+    padding-left: 15px;
+    font-family: Cambria, Georgia, serif;
+    font-size: 14px;
+    line-height: 24px;
+    position: fixed;
+    color: #FFFFFF;
+    user-select: none;
+    z-index: 1000;
+}
+	
+#ots{
+    position: relative; 
+    width: 170px; 
+    bottom: -73%; 
+    margin: 0 auto;
+    z-index: 14;
+    padding-left: 240px;
+}
+
+@media only screen and (max-width: 1366px) and (max-height: 768px){
+    #ots{
+        bottom: -70%; 
+    }
+    
+    .btn {
+        bottom: -64%;
+    }
+}
+
+@media only screen and (max-width: 1024px) and (max-height: 768px){
+    #ots{
+        padding-left: 200px;
+    }
+    
+    .btn {
+        left: -10%;
+    }
+}
+
+#txt3{
+    position: relative; 
+    width: 198px; 
+    top: 6%; 
+    margin: 0 auto;
+    z-index: 13;
+}
+
+#txt2{
+    position: relative; 
+    width: 397px; 
+    top: 5%; 
+    margin: 0 auto;
+    z-index: 12;
+}
+
+#txt1{
+    position: relative; 
+    width: 316px; 
+    top: 5%; 
+    margin: 0 auto;
+    z-index: 11;
+}
+
+#nbc{
+    position: absolute; 
+    width: 224px; 
+    top: 230px; 
+    left: 20%; 
+    z-index: 9;
+}
+
+#telemundo{
+    position: absolute; 
+    width: 224px; 
+    top: 406px; 
+    left: 50%; 
+    z-index: 8;
+}
+
+#telexitos{
+    position: absolute;
+    width: 224px;
+    top: 285px; 
+    left: 30%; 
+    z-index: 7;
+}
+
+#cozi{
+    position: absolute; 
+    width: 224px; 
+    top: 220px; 
+    left: 50%; 
+    z-index: 6;
+}
+
+#superbowl{
+    position: absolute; 
+    width: 224px; 
+    top: 399px; 
+    left: 25%; 
+    z-index: 10;
+}
+
+/* 720p STYLING */
+@media only screen and (max-width: 1280px) and (max-height: 720px){
+    
+    #txt1 {
+        top: 1%;
+    }
+    
+    #txt2 {
+        top: 1%;
+    }
+    
+    #txt3 {
+        top: 2%;
+    }
+    
+    .btn {
+        bottom: -62%;   
+    }
+    
+    #ots {
+        bottom: -69%; 
+    }
+}
+
+/* TABLET STYLING */
+@media only screen and (max-width: 768px) {
+    #cozi {
+        left: 80%
+    }
+}
+
+/* MOBILE STYLING */
+@media only screen and (max-width: 320px) {
+    .btn {
+        bottom: -65%;    
+    }
+    
+    #ots {
+        left: -10%!important;
+        bottom: -69%!important;
+    }
+       
+    #txt1 {
+        top: 2%;
+        width: 90%;
+    }
+    
+    #txt1 img {
+        width: 100%;
+    }
+    
+    #txt2{
+        width: 80%;
+        top: 2%;
+    }
+    
+    #txt3 {
+      top: 3%;
+    }
+    
+    #nbc{
+        top: 20%; 
+        left: 0; 
+    }
+    
+    #nbc img {
+        width: 50%;
+    }
+
+    #telemundo{
+        top: 75%; 
+        left: 50%; 
+    }
+    
+    #telemundo img {
+        width: 50%;
+    }
+
+    #telexitos{
+        top: 50%; 
+        left: 30%; 
+    }
+    
+    #telexitos img {
+        width: 50%;
+    }
+
+    #cozi{
+        top: 35%; 
+        left: 60%; 
+    }
+    
+    #cozi img {
+        width: 50%;
+    }
+
+    #superbowl{
+        top: 45%; 
+        left: -20%;
+    }
+    
+    #superbowl img {
+        width: 70%;
+    }
+}
+
+/* iPhone 6  STYLING */
+@media only screen and (max-device-width: 375px) {
+    .btn {
+        bottom: -71%;    
+    }
+    
+    #ots{
+        bottom: -70%;
+    }
+    
+    #txt1 {
+        top: 2%;
+    }
+    
+    #txt2{
+        width: 80%;
+        top: 2%;
+    }
+    
+    #txt3 {
+      top: 3%;
+    }
+    
+    #nbc{
+        top: 20%; 
+        left: 0; 
+    }
+    
+    #nbc img {
+        width: 50%;
+    }
+
+    #telemundo{
+        top: 75%; 
+        left: 50%; 
+    }
+    
+    #telemundo img {
+        width: 50%;
+    }
+
+    #telexitos{
+        top: 50%; 
+        left: 30%; 
+    }
+    
+    #telexitos img {
+        width: 50%;
+    }
+
+    #cozi{
+        top: 35%; 
+        left: 60%; 
+    }
+    
+    #cozi img {
+        width: 50%;
+    }
+
+    #superbowl{
+        top: 45%; 
+        left: 5%; 
+    }
+    
+    #superbowl img {
+        width: 70%;
+    }
+}
+
+/* iPhone 6+ STYLING */
+@media only screen and (max-device-width: 414px) { 
+    .btn {
+        bottom: -58%;
+        left: -25%;
+    }
+    
+    #ots{
+        bottom: -66%;
+        left: -10%;
+        width: 40%;
+    }
+    
+    #ots img {
+        width: 100%;
+    }
+    
+    #txt2{
+        width: 80%;
+    }
+    
+    #txt2 img {
+       width: 100%;
+    }
+            
+    #nbc{
+        top: 0;
+        left: 0; 
+    }
+    
+    #nbc img {
+        width: 60%;
+    }
+
+    #telemundo{
+        top: 15%; 
+        left: 100%;
+    }
+    
+    #telemundo img {
+        width: 60%;
+    }
+
+    #telexitos{
+        top: 50%; 
+        left: 0; 
+    }
+    
+    #telexitos img {
+        width: 60%;
+    }
+
+    #cozi{
+        top: 45%; 
+        left: 100%; 
+    }
+    
+    #cozi img {
+        width: 60%;
+    }
+
+    #superbowl{
+        top: 60%; 
+        left: -20%; 
+    }
+    
+    #superbowl img {
+        width: 95%;
+    }
+}
